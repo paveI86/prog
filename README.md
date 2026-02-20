@@ -22,7 +22,7 @@
     git commit -m 'first commit'
     git push
 # Скриншоты результатов
-![alt text](IMG/image.png)
+![alt text](image.png)
 # Ссылки на используемые материалы
 1. [Markdown guide](https://doka.guide/tools/markdown/)
 2. Пример отчёта
