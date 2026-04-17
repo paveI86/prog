@@ -40,8 +40,7 @@ def timer_decorator(func):
         end = time.perf_counter()
         print(f"[ДЕКОРАТОР] Время выполнения: {end - start:.4f} сек.")
         return result
-    return wrapper
-
+    return wrapper```
 ### 3. Реализация замыкания `file_reader`
 
 Функция `file_reader` реализует замыкание для построчного чтения файла с ограничением длины строки. Ниже представлен полный код с комментариями.
@@ -57,10 +56,11 @@ def file_reader(filename, max_length, encoding='utf-8'):
     
     Returns:
         функцию, которая при каждом вызове возвращает следующую часть текста
-    """
     if max_length <= 0:
         raise ValueError("Максимальная длина строки должна быть положительным числом")
-
+    """
+```
 ### 4. Вывод программы
 ![Скриншот 1](image/6.1.png)
-![Скриншот 2](image/6.2.png)
+![Скриншот 1](image/6.2.png)
+
