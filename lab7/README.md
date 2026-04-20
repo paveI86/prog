@@ -58,3 +58,136 @@ def sum_nested_iterative(lst):
             total += item
     return total```
     
+### Модуль 3.py (API запросы и декоратор)
+```python
+import requests
+import time
+from functools import wraps
+
+def timer_decorator(func):
+    """Декоратор для замера времени выполнения функции"""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        end = time.perf_counter()
+        print(f"[ДЕКОРАТОР] Время выполнения: {end - start:.4f} сек.")
+        return result
+    return wrapper
+
+def api_requester(url):
+    """Замыкание: запоминает URL и возвращает функцию получения данных"""
+    @timer_decorator
+    def get_fact():
+        try:
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+            # Извлечение факта из разных форматов API
+            if "data" in data and isinstance(data["data"], list):
+                if "attributes" in data["data"][0] and "body" in data["data"][0]["attributes"]:
+                    return data["data"][0]["attributes"]["body"]
+            if "fact" in data:
+                return data["fact"]
+            return str(data)
+        except requests.exceptions.RequestException as e:
+            return f"Ошибка запроса: {e}"
+    return get_fact```
+
+###Модуль 4.py (чтение файла с ограничением длины)
+```python
+def file_reader(filename, max_length, encoding='utf-8'):
+    """
+    Замыкание для построчного чтения файла.
+    Длинные строки разбиваются на части указанной длины.
+    """
+    file = open(filename, 'r', encoding=encoding)
+    remainder = ""
+    is_exhausted = False
+    
+    def read_next():
+        nonlocal remainder, is_exhausted
+        
+        if is_exhausted and not remainder:
+            return None
+        
+        if remainder:
+            if len(remainder) <= max_length:
+                result = remainder
+                remainder = ""
+                return result
+            else:
+                result = remainder[:max_length]
+                remainder = remainder[max_length:]
+                return result
+        
+        line = file.readline()
+        if not line:
+            is_exhausted = True
+            file.close()
+            return None
+        
+        line = line.rstrip('\n\r')
+        if len(line) <= max_length:
+            return line
+        
+        result = line[:max_length]
+        remainder = line[max_length:]
+        return result
+    
+    return read_next```
+
+###3. Запускающий модуль main.py на Typer
+```python
+import typer
+import ast
+from lab7_package import task4 as t4, task5 as t5, task6 as t6
+
+app = typer.Typer(help="Лабораторная работа №7: Пакеты и модули")
+
+@app.command()
+def sum_nested(lst: str, method: str = "recursive"):
+    """Сумма вложенных списков"""
+    parsed_list = ast.literal_eval(lst)
+    if method == "recursive":
+        result = t4.sum_nested_recursive(parsed_list)
+    else:
+        result = t4.sum_nested_iterative(parsed_list)
+    typer.echo(f"Сумма: {result}")
+
+@app.command()
+def sequence(k: int, method: str = "recursive"):
+    """Рекурсивная последовательность"""
+    if method == "recursive":
+        a_k, _ = t4.sequence_recursive(k)
+    else:
+        a_k = t4.sequence_iterative(k)
+    typer.echo(f"a_{k} = {a_k}")
+
+@app.command()
+def dog_fact():
+    """Факт о собаках"""
+    requester = t5.api_requester("https://dogapi.dog/api/v2/facts")
+    typer.echo(requester())
+
+@app.command()
+def cat_fact():
+    """Факт о кошках"""
+    requester = t5.api_requester("https://catfact.ninja/fact")
+    typer.echo(requester())
+
+@app.command()
+def read_file(filename: str, max_length: int = 30):
+    """Чтение файла с разбиением строк"""
+    reader = t6.file_reader(filename, max_length)
+    blocks = []
+    while True:
+        block = reader()
+        if block is None:
+            break
+        blocks.append(block)
+        typer.echo(f"Блок: {block}")
+
+if __name__ == "__main__":
+    app()```
+###Скриншоты результатов
