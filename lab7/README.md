@@ -96,7 +96,7 @@ def api_requester(url):
     return get_fact
 ```
 
-###Модуль 4.py (чтение файла с ограничением длины)
+### Модуль 4.py (чтение файла с ограничением длины)
 ```python
 def file_reader(filename, max_length, encoding='utf-8'):
     """
@@ -140,7 +140,7 @@ def file_reader(filename, max_length, encoding='utf-8'):
     return read_next
 ```
 
-###3. Запускающий модуль main.py на Typer
+### 3. Запускающий модуль main.py на Typer
 ```python
 import typer
 import ast
