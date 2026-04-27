@@ -56,7 +56,8 @@ def sum_nested_iterative(lst):
             stack.extend(item)
         elif isinstance(item, (int, float)):
             total += item
-    return total```
+    return total
+```
     
 ### Модуль 3.py (API запросы и декоратор)
 ```python
@@ -92,7 +93,8 @@ def api_requester(url):
             return str(data)
         except requests.exceptions.RequestException as e:
             return f"Ошибка запроса: {e}"
-    return get_fact```
+    return get_fact
+```
 
 ###Модуль 4.py (чтение файла с ограничением длины)
 ```python
@@ -135,7 +137,8 @@ def file_reader(filename, max_length, encoding='utf-8'):
         remainder = line[max_length:]
         return result
     
-    return read_next```
+    return read_next
+```
 
 ###3. Запускающий модуль main.py на Typer
 ```python
@@ -189,5 +192,11 @@ def read_file(filename: str, max_length: int = 30):
         typer.echo(f"Блок: {block}")
 
 if __name__ == "__main__":
-    app()```
-###Скриншоты результатов
+    app()
+```
+### Скриншоты результатов
+![Скриншот 1](image/7.1.png)
+![Скриншот 2](image/7.2.png)
+![Скриншот 3](image/7.3.png)
+![Скриншот 4](image/7.4.png)
+![Скриншот 5](image/7.5.png)
