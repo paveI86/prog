@@ -109,6 +109,7 @@ lab1/
 ### Инкапсуляция заданий
 
 В каждый файл задания добавлена функция run(). Пример для файла 00_distance.py:
+```python
 
 def calculate_distances():
     sites = {
@@ -134,8 +135,9 @@ def run():
 
 if __name__ == "__main__":
     run()
-
+```
 ### Верхнеуровневый модуль (main.py)
+```python
 
 import sys
 import os
@@ -218,6 +220,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
 
 ### Возможности модуля
 
