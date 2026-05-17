@@ -68,3 +68,13 @@ chair_item_3 = store[chair_code][2]
 chair_quantity = chair_item_1['quantity'] + chair_item_2['quantity'] + chair_item_3['quantity']
 chair_cost = (chair_item_1['quantity'] * chair_item_1['price']) + (chair_item_2['quantity'] * chair_item_2['price']) + (chair_item_3['quantity'] * chair_item_3['price'])
 print('Стул -', chair_quantity, 'шт, стоимость', chair_cost, 'руб')
+
+def run():
+    """Функция для запуска из верхнеуровневого модуля"""
+    # Здесь вызовите основную функцию вашего задания
+    # Например:
+    main()  # если у вас есть функция main()
+    # или просто скопируйте сюда код задания
+
+if __name__ == "__main__":
+    run()

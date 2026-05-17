@@ -52,3 +52,14 @@ for sweet, shops_list in sweets.items():
     print(f"{sweet}:")
     for shop_info in shops_list:
         print(f"  {shop_info['shop']} - {shop_info['price']} руб.")
+
+        
+def run():
+    """Функция для запуска из верхнеуровневого модуля"""
+    # Здесь вызовите основную функцию вашего задания
+    # Например:
+    main()  # если у вас есть функция main()
+    # или просто скопируйте сюда код задания
+
+if __name__ == "__main__":
+    run()

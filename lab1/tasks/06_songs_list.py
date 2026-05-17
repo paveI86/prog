@@ -58,3 +58,13 @@ other_total = sweetest_time + policy_time + blue_dress_time
 other_total_rounded = round(other_total, 2)
 
 print(f'А другие три песни звучат {other_total_rounded} минут')
+
+def run():
+    """Функция для запуска из верхнеуровневого модуля"""
+    # Здесь вызовите основную функцию вашего задания
+    # Например:
+    main()  # если у вас есть функция main()
+    # или просто скопируйте сюда код задания
+
+if __name__ == "__main__":
+    run()
