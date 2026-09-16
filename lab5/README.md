@@ -198,7 +198,7 @@ if __name__ == "__main__":
     @timer_decorator(active=True, output=False)
     def silent_func():
         time.sleep(0.1)
-        return "   Декоратор работает, но вывод времени отключён"
+        return "   Декоратор работает но вывод времени отключён"
     
     result = silent_func()
     print(result)
