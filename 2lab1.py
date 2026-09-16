@@ -10,5 +10,5 @@ score = 0
 for t in range(1, 10):
     if 0 < count[t] <= 2 * k:
         score += 1
-12
+
 print(score)
